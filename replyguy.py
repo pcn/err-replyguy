@@ -70,7 +70,7 @@ class ReplyGuy(BotPlugin):
 
 
     @botcmd(split_args_with=None)
-    def rg(self, msg, args)
+    def rg(self, msg, args):
         """
         (!rg <trigger>) reply to the trigger phrase
         """
