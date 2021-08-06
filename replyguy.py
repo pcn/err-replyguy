@@ -24,7 +24,7 @@ class ReplyGuy(BotPlugin):
     def get_trigger(self, word):
         """Lookup key."""
         with self.mutable(KEY) as triggers:
-            self.log.info(f"triggers is {triggers} and its type is {type(triggers)}")
+            self.log.info(f"triggers is {triggers} and its type is {type(triggers)} and it has {dir(triggers)}")
             response = triggers.get(word, "Seriously, are we not still doing phrasing?")
             self.log.info(f"Going to try to return {response}")
             return response
