@@ -39,15 +39,17 @@ class ReplyGuy(BotPlugin):
             return f"Set the phrase {word} to {reply}"
 
 
-    @botcmd(split_args_with=None)
-    def rg(self, cmd, action, trigger=None, reply=None):
+    @arg_botcmd('action', type=str)
+    @arg_botcmd('trigger', type=str)
+    @arg_botcmd('reply', type=str)
+    def rg(self, action, trigger=None, reply=None):
         """
         (!rg add <trigger> <reply>) add a trigger phrase
         (!rg list <trigger>) list trigger phrases
         (!rg del <trigger>) get rid of a trigger phrase
         (!rg <trigger>) reply to the trigger phrase
         """
-        self.log.info(f"Got this cmd: {cmd}, action: {action}, trigger: {trigger}, reply: {reply}")
+        self.log.info(f"Got this action: {action}, trigger: {trigger}, reply: {reply}")
         self.initialize_persistence(KEY, dict())
 
         if action not in ('add', 'list', 'del'):
