@@ -47,19 +47,19 @@ class ReplyGuy(BotPlugin):
         (!rg del <trigger>) get rid of a trigger phrase
         (!rg <trigger>) reply to the trigger phrase
         """
-        self.log.info(f"Got this cmd: {cmd}, trigger: {trigger}, reply: {reply}")
+        self.log.info(f"Got this cmd: {cmd}, action: {action}, trigger: {trigger}, reply: {reply}")
         self.initialize_persistence(KEY, dict())
 
         if action not in ('add', 'list', 'del'):
-            return self.get_trigger(action)
+            return self.get_trigger(trigger)
 
         if action == 'add' and trigger is not None and reply is not None:
             return self.set_trigger(trigger, reply)
 
         if action == 'del' and trigger is not None:
-            return "Elaborate voicemail prank"
+            return "Elaborate voicemail hoax"
 
         if action == 'list':
-            return "Elaborate voicemail prank"
+            return "Elaborate voicemail hoax"
 
         return "I didn't know what to do with whatever that was"
