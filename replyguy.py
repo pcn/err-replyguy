@@ -5,6 +5,7 @@ from urllib import error
 import json
 import requests
 
+KEY = "REPLYGUYREPLIES"
 
 class ReplyGuy(BotPlugin):
     """Stores replies to questions (links etc)
@@ -22,12 +23,12 @@ class ReplyGuy(BotPlugin):
 
     def get_trigger(self, word):
         """Lookup key."""
-        with self.mutable('REPLY_GUY_TRIGGERS') as triggers:
+        with self.mutable(KEY) as triggers:
             return triggers.get(word, "Seriously, are we not still doing phrasing?")
 
     def set_trigger(self, word, reply):
         """Lookup key."""
-        with self.mutable('REPLY_GUY_TRIGGERS') as triggers:
+        with self.mutable(KEY) as triggers:
             former_reply = get_trigger(word)
             triggers.set(word, reply)
             if former_reply:
@@ -43,10 +44,8 @@ class ReplyGuy(BotPlugin):
         (!rg del <trigger>) get rid of a trigger phrase
         (!rg <trigger>) reply to the trigger phrase
         """
-        key = "REPLYGUYREPLIES"
-
         self.log.info(f"Got this cmd: {cmd}, trigger: {trigger}, reply: {reply}")
-        self.initialize_persistence(key, dict())
+        self.initialize_persistence(KEY, dict())
 
         if action not in ('add', 'list', 'del'):
             return self.get_trigger(action)
