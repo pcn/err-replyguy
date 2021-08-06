@@ -39,9 +39,9 @@ class ReplyGuy(BotPlugin):
             return f"Set the phrase {word} to {reply}"
 
 
-    @arg_botcmd('reply', type=str)
-    @arg_botcmd('trigger', type=str)
     @arg_botcmd('action', type=str)
+    @arg_botcmd('trigger', type=str, default=None)
+    @arg_botcmd('reply', type=str, default=None)
     def rg(self, action, trigger=None, reply=None):
         """
         (!rg add <trigger> <reply>) add a trigger phrase
