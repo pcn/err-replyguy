@@ -36,7 +36,7 @@ class ReplyGuy(BotPlugin):
 
 
     @botcmd(split_args_with=None)
-    def rg(self, cmd, trigger=None, reply=None):
+    def rg(self, cmd, action, trigger=None, reply=None):
         """
         (!rg add <trigger> <reply>) add a trigger phrase
         (!rg list <trigger>) list trigger phrases
@@ -48,16 +48,16 @@ class ReplyGuy(BotPlugin):
         self.log.info(f"Got this cmd: {cmd}, trigger: {trigger}, reply: {reply}")
         self.initialize_persistence(key, dict())
 
-        if cmd not in ('add', 'list', 'del'):
-            return self.get_trigger(cmd)
+        if action not in ('add', 'list', 'del'):
+            return self.get_trigger(action)
 
-        if cmd == 'add' and trigger is not None and reply is not None:
+        if action == 'add' and trigger is not None and reply is not None:
             return self.set_trigger(trigger, reply)
 
-        if cmd == 'del' and trigger is not None:
+        if action == 'del' and trigger is not None:
             return "Elaborate voicemail prank"
 
-        if cmd == 'list':
+        if action == 'list':
             return "Elaborate voicemail prank"
 
         return "I didn't know what to do with whatever that was"
