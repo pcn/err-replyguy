@@ -49,6 +49,14 @@ class ReplyGuy(BotPlugin):
         self.initialize_persistence(KEY, dict())
         return self.set_trigger(args[0], args[1])
 
+    @botcmd(split_args_with=None)
+    def rg_set(self, msg, args):
+        """
+        (!rg set <trigger> <reply>) add a trigger phrase, same as add
+        """
+        self.initialize_persistence(KEY, dict())
+        return self.set_trigger(args[0], args[1])
+
 
     @botcmd(split_args_with=None)
     def rg_del(self, msg, args):
@@ -66,6 +74,14 @@ class ReplyGuy(BotPlugin):
         """
         self.initialize_persistence(KEY, dict())
         return "Elaborate voicemail hoax"
+
+
+    @botcmd(split_args_with=None)
+    def rg_get(self, msg, args):
+        """
+        (!rg <trigger>) reply to the trigger phrase
+        """
+        return self.get_trigger(args[0])
 
 
     @botcmd(split_args_with=None)
