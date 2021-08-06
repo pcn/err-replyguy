@@ -51,8 +51,8 @@ class ReplyGuy(BotPlugin):
         return self.set_trigger(args[0], args[1])
 
 
-    @botcmd
-    def rg_del(self, msg, trigger):
+    @botcmd(split_args_with=None)
+    def rg_del(self, msg, args):
         """
         (!rg del <trigger> ) removes a trigger phrase
         """
@@ -69,9 +69,9 @@ class ReplyGuy(BotPlugin):
         return "Elaborate voicemail hoax"
 
 
-    @botcmd
-    def rg(self, msg, action=None, trigger=None, reply=None):
+    @botcmd(split_args_with=None)
+    def rg(self, msg, args)
         """
         (!rg <trigger>) reply to the trigger phrase
         """
-        return self.get_trigger(trigger)
+        return self.get_trigger(args[0])
