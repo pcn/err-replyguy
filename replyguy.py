@@ -43,7 +43,7 @@ class ReplyGuy(BotPlugin):
         (!rg del <trigger>) get rid of a trigger phrase
         (!rg <trigger>) reply to the trigger phrase
         """
-        self.log.iunfo(f"Got this trigger: {msg} {args}")
+        self.log.info(f"Got this trigger: {msg} {args}")
         self.initialize_persistence(key, dict())
 
         if cmd not in ('add', 'list', 'del'):
