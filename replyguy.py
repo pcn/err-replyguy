@@ -34,7 +34,7 @@ class ReplyGuy(BotPlugin):
         """Lookup key."""
         self.log.info(f"Trying to record {word}: {reply}")
         with self.mutable(KEY) as triggers:
-            former_reply = trigger.get(word)
+            former_reply = triggers.get(word)
             triggers[word] = reply
             if former_reply:
                 return f"Set the phrase {word} to {reply} (was {former_reply})"
