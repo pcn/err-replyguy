@@ -49,10 +49,10 @@ class ReplyGuy(BotPlugin):
         self.initialize_persistence(key, dict())
 
         if cmd not in ('add', 'list', 'del'):
-            return get_trigger(cmd)
+            return self.get_trigger(cmd)
 
         if cmd == 'add' and trigger is not None and reply is not None:
-            return set_trigger(trigger, reply)
+            return self.set_trigger(trigger, reply)
 
         if cmd == 'del' and trigger is not None:
             return "Elaborate voicemail prank"
