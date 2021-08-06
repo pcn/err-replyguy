@@ -39,14 +39,14 @@ class ReplyGuy(BotPlugin):
             return f"Set the phrase {word} to {reply}"
 
 
-    @botcmd
-    def rg_add(self, msg, trigger, reply):
+    @botcmd(split_args_with=None)
+    def rg_add(self, msg, args):
         """
         (!rg add <trigger> <reply>) add a trigger phrase
         """
         self.initialize_persistence(KEY, dict())
 
-        return self.set_trigger(trigger, reply)
+        return self.set_trigger(args[0], args[1])
 
 
     @botcmd
