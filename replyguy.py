@@ -34,7 +34,7 @@ class ReplyGuy(BotPlugin):
         self.log.info(f"Trying to record {word}: {reply}")
         with self.mutable(KEY) as triggers:
             former_reply = self.get_trigger(word)
-            triggers.set(word, reply)
+            triggers[word] = reply
             if former_reply:
                 return f"Set the phrase {word} to {reply} (was {former_reply})"
             return f"Set the phrase {word} to {reply}"
