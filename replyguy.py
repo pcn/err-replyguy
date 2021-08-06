@@ -24,16 +24,17 @@ class ReplyGuy(BotPlugin):
     def get_trigger(self, word):
         """Lookup key."""
         with self.mutable(KEY) as triggers:
-            self.log.info(f"triggers is {triggers} and its type is {type(triggers)} and it has {dir(triggers)}")
+            self.log.info(f"triggers is {triggers}")
             response = triggers.get(word, "Seriously, are we not still doing phrasing?")
             self.log.info(f"Going to try to return {response}")
             return response
+
 
     def set_trigger(self, word, reply):
         """Lookup key."""
         self.log.info(f"Trying to record {word}: {reply}")
         with self.mutable(KEY) as triggers:
-            former_reply = self.get_trigger(word)
+            former_reply = trigger.get(word)
             triggers[word] = reply
             if former_reply:
                 return f"Set the phrase {word} to {reply} (was {former_reply})"
