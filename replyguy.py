@@ -31,6 +31,7 @@ class ReplyGuy(BotPlugin):
 
     def set_trigger(self, word, reply):
         """Lookup key."""
+        self.log.info(f"Trying to record {word}: {reply}")
         with self.mutable(KEY) as triggers:
             former_reply = get_trigger(word)
             triggers.set(word, reply)
