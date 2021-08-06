@@ -47,7 +47,6 @@ class ReplyGuy(BotPlugin):
         (!rg add <trigger> <reply>) add a trigger phrase
         """
         self.initialize_persistence(KEY, dict())
-
         return self.set_trigger(args[0], args[1])
 
 
