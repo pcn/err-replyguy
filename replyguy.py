@@ -43,6 +43,8 @@ class ReplyGuy(BotPlugin):
         (!rg del <trigger>) get rid of a trigger phrase
         (!rg <trigger>) reply to the trigger phrase
         """
+        key = "REPLYGUYREPLIES"
+
         self.log.info(f"Got this cmd: {cmd}, trigger: {trigger}, reply: {reply}")
         self.initialize_persistence(key, dict())
 
