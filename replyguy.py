@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from errbot import BotPlugin, arg_botcmd
+from errbot import BotPlugin, botcmd
 from urllib import error
 import json
 import requests
@@ -39,29 +39,37 @@ class ReplyGuy(BotPlugin):
             return f"Set the phrase {word} to {reply}"
 
 
-    @arg_botcmd('action', type=str)
-    @arg_botcmd('trigger', type=str, default=None)
-    @arg_botcmd('reply', type=str, default=None)
-    def rg(self, msg, action=None, trigger=None, reply=None):
+    @botcmd
+    def rg_add(self, msg, trigger, reply):
         """
         (!rg add <trigger> <reply>) add a trigger phrase
-        (!rg list <trigger>) list trigger phrases
-        (!rg del <trigger>) get rid of a trigger phrase
-        (!rg <trigger>) reply to the trigger phrase
         """
-        self.log.info(f"Got this action: {action}, trigger: {trigger}, reply: {reply}")
         self.initialize_persistence(KEY, dict())
 
-        if action not in ('add', 'list', 'del'):
-            return self.get_trigger(trigger)
+        return self.set_trigger(trigger, reply)
 
-        if action == 'add' and trigger is not None and reply is not None:
-            return self.set_trigger(trigger, reply)
 
-        if action == 'del' and trigger is not None:
-            return "Elaborate voicemail hoax"
+    @botcmd
+    def rg_del(self, msg, trigger):
+        """
+        (!rg del <trigger> ) removes a trigger phrase
+        """
+        self.initialize_persistence(KEY, dict())
+        return "Elaborate voicemail hoax"
 
-        if action == 'list':
-            return "Elaborate voicemail hoax"
 
-        return "I didn't know what to do with whatever that was"
+    @botcmd
+    def rg_list(self, msg):
+        """
+        (!rg list ) lists triggers that gets this bot to respond
+        """
+        self.initialize_persistence(KEY, dict())
+        return "Elaborate voicemail hoax"
+
+
+    @botcmd
+    def rg(self, msg, action=None, trigger=None, reply=None):
+        """
+        (!rg <trigger>) reply to the trigger phrase
+        """
+        return self.get_trigger(trigger)
